@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:bmi_calculator/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,13 +32,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('BMI Calculator'), backgroundColor: Colors.black), 
-      body: Padding(
-        // ignore: prefer_const_constructors
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        child: Column(
-          
-        ),
-     ),
+      body: HomePage()
     );
   }
 }
