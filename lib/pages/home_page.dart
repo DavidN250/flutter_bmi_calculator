@@ -11,19 +11,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final emailController = TextEditingController();
+  final numberController = TextEditingController();
   bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.all(32),
-      children: [buildEmail(), SizedBox(height: 10), buildPassword(), SizedBox(height: 10), buildNumber()],
+      children: [buildEmail(emailController), SizedBox(height: 10), buildPassword(), SizedBox(height: 10), buildNumber(numberController)],
     );
   }
 }
 
 //Email Widget
-Widget buildEmail() => TextField(
-      controller: TextEditingController(),
+Widget buildEmail(emailController) => TextField(
+      controller:emailController,
       decoration: InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'name@Example.com',
@@ -32,7 +33,7 @@ Widget buildEmail() => TextField(
           suffixIcon: IconButton(
             icon: Icon(Icons.close_sharp),
             onPressed: () {
-              TextEditingController().clear();
+              emailController.clear();
             },
           )),
       keyboardType: TextInputType.emailAddress,
@@ -52,7 +53,8 @@ Widget buildPassword() => TextField(
         )));
 
 // Number Widget
-Widget buildNumber() => TextField(
+Widget buildNumber(numberController) => TextField(
+  controller: numberController,
   decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Number',
