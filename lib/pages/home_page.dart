@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 
@@ -10,30 +10,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final emailController = TextEditingController();
-  final numberController = TextEditingController();
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
   bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(32),
-      children: [buildEmail(emailController), SizedBox(height: 10), buildPassword(), SizedBox(height: 10), buildNumber(numberController)],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("BMI Calculator"),
+        actions: [Icon(Icons.settings, color: Colors.black)],
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(32),
+        children: [
+          Row(children: [
+            Container(child: Text('Man')),
+            Container(child: Text('Woman')),
+          ],),
+          heightEmail(heightController), 
+          SizedBox(height: 10), 
+          weightBuild(weightController), 
+          SizedBox(height: 10),],
+      ),
+      
     );
   }
 }
 
 //Email Widget
-Widget buildEmail(emailController) => TextField(
-      controller:emailController,
+Widget heightEmail(heightController) => TextField(
+      controller:heightController,
       decoration: InputDecoration(
           border: OutlineInputBorder(),
-          hintText: 'name@Example.com',
-          labelText: 'Email',
-          prefix: Icon(Icons.mail_outline),
+          labelText: 'Your height in Cm',
           suffixIcon: IconButton(
-            icon: Icon(Icons.close_sharp),
+            icon: Icon(Icons.man),
             onPressed: () {
-              emailController.clear();
+              heightController.clear();
             },
           )),
       keyboardType: TextInputType.emailAddress,
@@ -41,27 +54,14 @@ Widget buildEmail(emailController) => TextField(
     );
 
 //Password Widget
-Widget buildPassword() => TextField(
+Widget weightBuild(weightController) => TextField(
+    controller: weightController,
     decoration: InputDecoration(
         border: OutlineInputBorder(),
-        labelText: 'Password',
+        labelText: 'Your Weight in Kg',
         suffixIcon: IconButton(
-          icon: Icon(Icons.visibility_off),
+          icon: Icon(Icons.balance),
           onPressed: () {
-            TextEditingController().clear();
+            weightController.clear();
           },
         )));
-
-// Number Widget
-Widget buildNumber(numberController) => TextField(
-  controller: numberController,
-  decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Number',
-        suffixIcon: IconButton(
-          icon: Icon(Icons.format_list_numbered_rounded),
-          onPressed: () {
-            TextEditingController().clear();
-          },
-        ))
-);

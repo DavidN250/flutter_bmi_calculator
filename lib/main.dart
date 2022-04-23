@@ -31,7 +31,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('BMI Calculator'), backgroundColor: Colors.black), 
       body: HomePage()
     );
   }
